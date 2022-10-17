@@ -6,7 +6,7 @@ import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 
-public class Permission {
+public class XPermission {
     private static final int DONT_REQUEST = -1;
 
     @SuppressLint("NewApi")
