@@ -48,4 +48,46 @@ public class XPermission {
         }
         return false;
     }
+
+    /*@SuppressLint("NewApi")
+    public static boolean isAccessSms(Activity activity) {
+        return isAccessExternalStorage(activity, DONT_REQUEST);
+    }
+
+    @SuppressLint("NewApi")
+    public static boolean isAccessSms(Activity activity, int code) {
+        // My location
+        if (ActivityCompat.checkSelfPermission(activity.getBaseContext(), Manifest.permission.READ_SMS)
+                != PackageManager.PERMISSION_GRANTED) {
+            if(code!=DONT_REQUEST) activity.requestPermissions(new String[]{
+                    Manifest.permission.READ_SMS}, code);
+        } else {
+            return true;
+        }
+        return false;
+    }*/
+
+    @SuppressLint("NewApi")
+    public static boolean isAccessSms(Activity activity) {
+        return isAccessSms(activity, DONT_REQUEST);
+    }
+
+    @SuppressLint("NewApi")
+    public static boolean isAccessSms(Activity activity, int code) {
+        // My location
+        if (ActivityCompat.checkSelfPermission(activity.getBaseContext(), Manifest.permission.READ_SMS)
+                != PackageManager.PERMISSION_GRANTED ||
+                ActivityCompat.checkSelfPermission(activity.getBaseContext(), Manifest.permission.RECEIVE_SMS)
+                != PackageManager.PERMISSION_GRANTED ||
+                ActivityCompat.checkSelfPermission(activity.getBaseContext(), Manifest.permission.SEND_SMS)
+                        != PackageManager.PERMISSION_GRANTED) {
+            if(code!=DONT_REQUEST) activity.requestPermissions(new String[]{
+                    Manifest.permission.READ_SMS,
+                    Manifest.permission.RECEIVE_SMS,
+                    Manifest.permission.SEND_SMS}, code);
+        } else {
+            return true;
+        }
+        return false;
+    }
 }

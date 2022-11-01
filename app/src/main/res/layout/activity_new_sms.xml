@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android.support.design="http://schemas.android.com/apk/res-auto"
+    tools:context=".NewSmsActivity"
+    android:orientation="vertical">
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/simTextInputLayout"
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android.support.design:counterMaxLength="3"
+        android:layout_marginTop="10dp"
+        android:textColorHint="#888888">
+        <EditText
+            android:id="@+id/simId"
+            android:inputType="number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_message_black_24dp"
+            android:text="1"
+            android:hint="SIM ID" />
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/emailTextInputLayout"
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android.support.design:counterMaxLength="3"
+        android:layout_marginTop="10dp"
+        android:textColorHint="#888888">
+        <EditText
+            android:id="@+id/phone"
+            android:inputType="phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_message_black_24dp"
+            android:text="657319793/693072361"
+            android:hint="Contact" />
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/phoneTextInputLayout"
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android.support.design:counterMaxLength="3"
+        android:layout_marginTop="10dp"
+        android:textColorHint="#888888">
+        <AutoCompleteTextView
+            android:id="@+id/msg"
+            android:inputType="textMultiLine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_message_black_24dp"
+            android:hint="Your Message | smslink://..." />
+    </android.support.design.widget.TextInputLayout>
+    <Button
+        android:id="@+id/submit"
+        android:inputType="textMultiLine"
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Your Message" />
+    <TextView
+        android:id="@+id/data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:hint="Contact" />
+
+</LinearLayout>
