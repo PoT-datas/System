@@ -19,6 +19,11 @@ public class SmsCallback implements SmsListener{
     }
 
     @Override
+    public Message onReceivedCmd(Message message) {
+        return message;
+    }
+
+    @Override
     public void onMsgListReady(List<Message> messages) {
 
     }

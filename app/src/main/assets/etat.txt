@@ -1,0 +1,5 @@
+i1:Macbook Pro:en marche
+i2:Acer:pas en marche
+i3:Dell:en marche
+i4:HP Probook:pas en marche
+i5:Lenevo:en marche

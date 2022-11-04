@@ -54,11 +54,9 @@ public class SmsReceiver extends BroadcastReceiver {
             //this will update the UI with message
             XSms inst = XSms.instance(context);
             if(inst.smsListener!=null && message!=null) {
+                Message m = inst.smsListener.onReceivedCmd(message);
+                if(m!=null) message = m;
                 if(XSms.linkValide(message.getBody())) inst.smsListener.onReceivedLink(new SmsLink(message, context));
-                else if(message.getBody().length()==2) {
-                    message.setBody("smslink://"+message.getAddress()+"/api/data?id="+message.getBody());
-                    inst.smsListener.onReceivedLink(new SmsLink(message, context));
-                }
                 else inst.smsListener.onReceivedSms(message);
             }
         }

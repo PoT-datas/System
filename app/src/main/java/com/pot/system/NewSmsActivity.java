@@ -92,6 +92,17 @@ public class NewSmsActivity extends AppCompatActivity {
         XSms.with(this)
                 .listener(new SmsCallback() {
                     @Override
+                    public Message onReceivedCmd(Message message) {
+                        String[] data;
+                        if(message.getBody().length()==2) {
+                            message.setBody("smslink://"+message.getAddress()+"/api/user?id="+message.getBody());
+                        }else if( (data=message.getBody().split(" ")).length==2 ){
+                            message.setBody("smslink://"+message.getAddress()+"/api/"+data[0].toLowerCase()+"?id="+data[1].toLowerCase());
+                        }
+                        return message;
+                    }
+
+                    @Override
                     public void onReceivedSms(Message message) {
                         Toast.makeText(NewSmsActivity.this, message.toString(), Toast.LENGTH_SHORT).show();
                     }
@@ -106,33 +117,77 @@ public class NewSmsActivity extends AppCompatActivity {
                         } catch (Exception e) {}
                         simId.setText((sId+1) + "");
                         ///
-                        if (link.checkForAPI("api/presence")) {
-                            Toast.makeText(NewSmsActivity.this, "into API presence : \n" + link.toString(), Toast.LENGTH_LONG).show();
-                        } else if (link.checkForAPI("api/data")) {
+                        if (link.checkForAPI("api/etat")) {
                             if (link.checkParamsAvailable("id")) {
                                 String id = link.getParam("id");
-
+                                //
                                 QuoteBank mQuoteBank = new QuoteBank(NewSmsActivity.this);
-                                List<String> mLines = mQuoteBank.readLine("datas.txt");
+                                List<String> mLines = mQuoteBank.readLine("user.txt");
+                                response.setBody("api/data : \nNo Match Id");
                                 for (String string : mLines) {
                                     if (string.substring(0, string.indexOf(":")).equals(id)) {
                                         response.setBody("api/data : \n" +
                                                 "id = " + id + "\n" +
                                                 "Noms = " + string.substring(string.indexOf(":") + 1));
-                                        ///
-                                        XSms.with(NewSmsActivity.this)
-                                                .sendSms(sId, response);
-                                        //response.sendSms();
-                                        return;
+                                        break;
                                     }
                                 }
-                                response.setBody("api/data : \nNo Match Id");
-                                //response.sendSms();
-                                //Toast.makeText(NewSmsActivity.this, response.toString(), Toast.LENGTH_LONG).show();
                             } else {
                                 response.setBody("api/data : \nMissing Params");
-                                //response.sendSms();
-                                //Toast.makeText(NewSmsActivity.this, "into API somme : \n Missing Params", Toast.LENGTH_LONG).show();
+                            }
+                        } else if (link.checkForAPI("api/méteo")) {
+                            if (link.checkParamsAvailable("id")) {
+                                String id = link.getParam("id");
+                                //
+                                QuoteBank mQuoteBank = new QuoteBank(NewSmsActivity.this);
+                                List<String> mLines = mQuoteBank.readLine("user.txt");
+                                response.setBody("api/data : \nNo Match Id");
+                                for (String string : mLines) {
+                                    if (string.substring(0, string.indexOf(":")).equals(id)) {
+                                        response.setBody("api/data : \n" +
+                                                "id = " + id + "\n" +
+                                                "Noms = " + string.substring(string.indexOf(":") + 1));
+                                        break;
+                                    }
+                                }
+                            } else {
+                                response.setBody("api/data : \nMissing Params");
+                            }
+                        } else if (link.checkForAPI("api/présence")) {
+                            if (link.checkParamsAvailable("id")) {
+                                String id = link.getParam("id");
+                                //
+                                QuoteBank mQuoteBank = new QuoteBank(NewSmsActivity.this);
+                                List<String> mLines = mQuoteBank.readLine("user.txt");
+                                response.setBody("api/data : \nNo Match Id");
+                                for (String string : mLines) {
+                                    if (string.substring(0, string.indexOf(":")).equals(id)) {
+                                        response.setBody("api/data : \n" +
+                                                "id = " + id + "\n" +
+                                                "Noms = " + string.substring(string.indexOf(":") + 1));
+                                        break;
+                                    }
+                                }
+                            } else {
+                                response.setBody("api/data : \nMissing Params");
+                            }
+                        } else if (link.checkForAPI("api/user")) {
+                            if (link.checkParamsAvailable("id")) {
+                                String id = link.getParam("id");
+                                //
+                                QuoteBank mQuoteBank = new QuoteBank(NewSmsActivity.this);
+                                List<String> mLines = mQuoteBank.readLine("user.txt");
+                                response.setBody("api/data : \nNo Match Id");
+                                for (String string : mLines) {
+                                    if (string.substring(0, string.indexOf(":")).equals(id)) {
+                                        response.setBody("api/data : \n" +
+                                                "id = " + id + "\n" +
+                                                "Noms = " + string.substring(string.indexOf(":") + 1));
+                                        break;
+                                    }
+                                }
+                            } else {
+                                response.setBody("api/data : \nMissing Params");
                             }
                         } else if (link.checkForAPI("api/somme")) {
                             if (link.params.size() > 1 && link.checkParamsAvailable("a", "b")) {
@@ -143,13 +198,11 @@ public class NewSmsActivity extends AppCompatActivity {
                                 }
                                 response.setBody("api/somme : \n" +
                                         link.getParam("a") + " + " + link.getParam("b") + " = " + some);
-                                //response.sendSms();
-                                //Toast.makeText(NewSmsActivity.this, response.toString(), Toast.LENGTH_LONG).show();
                             } else {
                                 response.setBody("api/somme : \nMissing Params");
-                                //response.sendSms();
-                                //Toast.makeText(NewSmsActivity.this, "into API somme : \n Missing Params", Toast.LENGTH_LONG).show();
                             }
+                        }else {
+                            response.setBody("api/data : \nNo Match API");
                         }
                         ///
                         XSms.with(NewSmsActivity.this)
