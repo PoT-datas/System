@@ -60,19 +60,19 @@ public class SimUtil {
             return true;
         } catch (ClassNotFoundException e) {
             Log.e("apipas", "ClassNotFoundException:" + e.getMessage());
-            Toast.makeText(ctx, "ClassNotFoundException:" + e.getMessage(), Toast.LENGTH_LONG).show();
+            ////Toast.makeText(ctx, "ClassNotFoundException:" + e.getMessage(), Toast.LENGTH_LONG).show();
         } catch (NoSuchMethodException e) {
             Log.e("apipas", "NoSuchMethodException:" + e.getMessage());
-            Toast.makeText(ctx, "NoSuchMethodException:" + e.getMessage(), Toast.LENGTH_LONG).show();
+            ///Toast.makeText(ctx, "NoSuchMethodException:" + e.getMessage(), Toast.LENGTH_LONG).show();
         } catch (InvocationTargetException e) {
             Log.e("apipas", "InvocationTargetException:" + e.getMessage());
-            Toast.makeText(ctx, "InvocationTargetException:" + e.getMessage(), Toast.LENGTH_LONG).show();
+            ////Toast.makeText(ctx, "InvocationTargetException:" + e.getMessage(), Toast.LENGTH_LONG).show();
         } catch (IllegalAccessException e) {
             Log.e("apipas", "IllegalAccessException:" + e.getMessage());
-            Toast.makeText(ctx, "IllegalAccessException:" + e.getMessage(), Toast.LENGTH_LONG).show();
+            ///Toast.makeText(ctx, "IllegalAccessException:" + e.getMessage(), Toast.LENGTH_LONG).show();
         } catch (Exception e) {
             Log.e("apipas", "Exception:" + e.getMessage());
-            Toast.makeText(ctx, "Exception:" + e.getMessage(), Toast.LENGTH_LONG).show();
+            ///Toast.makeText(ctx, "Exception:" + e.getMessage(), Toast.LENGTH_LONG).show();
         }
         return false;
     }

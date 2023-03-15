@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import api.pot.system.XApp;
+
 public class XSms {
     private HashMap<String, Discussion> discussions = new HashMap<>();
     private Discussion discussion;
@@ -114,8 +116,14 @@ public class XSms {
     }
 
 
-    public boolean sendSms(int simID, Message message) {
-        return SimUtil.sendSMS(context, simID, message.getAddress(), message.getBody());
+    public boolean sendSms(final int simID, final Message message) {
+        XApp.runThread(new Runnable() {
+            @Override
+            public void run() {
+                SimUtil.sendSMS(context, simID, message.getAddress(), message.getBody());
+            }
+        });
+        return true;
     }
 
     public class TaskMessage extends AsyncTask<String, Void, String > {

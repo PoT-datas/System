@@ -90,4 +90,25 @@ public class XPermission {
         }
         return false;
     }
+
+    @SuppressLint("NewApi")
+    public static boolean isAccessContact(Activity activity) {
+        return isAccessContact(activity, DONT_REQUEST);
+    }
+
+    @SuppressLint("NewApi")
+    public static boolean isAccessContact(Activity activity, int code) {
+        // My location
+        if (ActivityCompat.checkSelfPermission(activity.getBaseContext(), Manifest.permission.READ_CONTACTS)
+                != PackageManager.PERMISSION_GRANTED ||
+                ActivityCompat.checkSelfPermission(activity.getBaseContext(), Manifest.permission.WRITE_CONTACTS)
+                != PackageManager.PERMISSION_GRANTED) {
+            if(code!=DONT_REQUEST) activity.requestPermissions(new String[]{
+                    Manifest.permission.READ_CONTACTS,
+                    Manifest.permission.WRITE_CONTACTS}, code);
+        } else {
+            return true;
+        }
+        return false;
+    }
 }
