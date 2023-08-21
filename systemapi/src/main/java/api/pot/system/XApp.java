@@ -6,7 +6,7 @@ import android.os.Handler;
 
 public class XApp {
     private static XApp xApp;
-    private static Context context;
+    public static Context context;
 
     private static Handler uiHandler;
 

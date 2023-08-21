@@ -30,7 +30,7 @@ public class XSms {
     }
 
     public static XSms with(Context context) {
-        if(sms==null) sms = new XSms(context);
+        if(sms==null||sms.context==null) sms = new XSms(context);
         return sms;
     }
 

@@ -20,7 +20,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import api.pot.system.XPermission;
+import api.pot.system.permissions.XPermission;
 import api.pot.system.sms.Discussion;
 import api.pot.system.sms.Message;
 import api.pot.system.sms.SmsCallback;
@@ -45,9 +45,9 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityOptionsCompat;
 
 import static androidx.activity.result.ActivityResultCallerKt.registerForActivityResult;*/
-import static api.pot.system.XPermission.isAccessExternalStorage;
-import static api.pot.system.XPermission.isAccessSms;
-import static api.pot.system.XPermission.isLocationEnabled;
+import static api.pot.system.permissions.XPermission.isAccessExternalStorage;
+import static api.pot.system.permissions.XPermission.isAccessSms;
+import static api.pot.system.permissions.XPermission.isLocationEnabled;
 
 public class SmsActivity extends AppCompatActivity {
     public static Discussion selectedDisc;

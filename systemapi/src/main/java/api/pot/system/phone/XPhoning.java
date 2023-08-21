@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
@@ -12,6 +13,14 @@ import java.util.List;
 
 @SuppressLint("MissingPermission")
 public class XPhoning {
+
+    public static String getImei(Context context){
+        TelephonyManager telemamanger = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            return telemamanger.getImei();
+        }
+        return telemamanger.getDeviceId();
+    }
 
     public static String getPhoneNumber(Context context){
         TelephonyManager telemamanger = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
