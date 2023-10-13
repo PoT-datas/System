@@ -19,6 +19,17 @@ public class XPermission {
         listener = xPermissionListener;
     }
 
+    public static void isLocationEnabled(XPermissionListener xPermissionListener) {
+        if(XApp.context!=null)
+            isLocationEnabled(XApp.context, xPermissionListener);
+    }
+
+    public static void isLocationEnabled(Context context, XPermissionListener xPermissionListener) {
+        listener = xPermissionListener;
+        requestCode = RequestCode.REQUEST_CODE_LOCATION;
+        PermissionActivity.with(context);
+    }
+
     @SuppressLint("NewApi")
     public static boolean isLocationEnabled(Activity activity) {
         return isLocationEnabled(activity, DONT_REQUEST);
@@ -37,6 +48,17 @@ public class XPermission {
             return true;
         }
         return false;
+    }
+
+    public static void isAccessExternalStorage(XPermissionListener xPermissionListener) {
+        if(XApp.context!=null)
+            isAccessExternalStorage(XApp.context, xPermissionListener);
+    }
+
+    public static void isAccessExternalStorage(Context context, XPermissionListener xPermissionListener) {
+        listener = xPermissionListener;
+        requestCode = RequestCode.REQUEST_CODE_EXTERNAL_STORAGE;
+        PermissionActivity.with(context);
     }
 
     @SuppressLint("NewApi")
@@ -59,6 +81,17 @@ public class XPermission {
         return false;
     }
 
+    public static void isAccessPhoneState(XPermissionListener xPermissionListener) {
+        if(XApp.context!=null)
+            isAccessPhoneState(XApp.context, xPermissionListener);
+    }
+
+    public static void isAccessPhoneState(Context context, XPermissionListener xPermissionListener) {
+        listener = xPermissionListener;
+        requestCode = RequestCode.REQUEST_PHONE_STATE;
+        PermissionActivity.with(context);
+    }
+
     @SuppressLint("NewApi")
     public static boolean isAccessPhoneState(Activity activity) {
         return isAccessPhoneState(activity, DONT_REQUEST);
@@ -75,6 +108,17 @@ public class XPermission {
             return true;
         }
         return false;
+    }
+
+    public static void isAccessAudioRec(XPermissionListener xPermissionListener) {
+        if(XApp.context!=null)
+            isAccessAudioRec(XApp.context, xPermissionListener);
+    }
+
+    public static void isAccessAudioRec(Context context, XPermissionListener xPermissionListener) {
+        listener = xPermissionListener;
+        requestCode = RequestCode.REQUEST_CODE_RECORD_AUDIO;
+        PermissionActivity.with(context);
     }
 
     @SuppressLint("NewApi")

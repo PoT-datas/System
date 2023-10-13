@@ -69,6 +69,12 @@ public class Log {
 
     public static void i(Context context, String msg){
         try {
+            ///---Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
+        }catch (Exception e){ }
+    }
+
+    public static void j(Context context, String msg){
+        try {
             Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
         }catch (Exception e){ }
     }
